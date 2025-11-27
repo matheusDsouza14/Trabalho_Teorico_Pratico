@@ -1,8 +1,9 @@
-package org.example;
+package main.java.org.example;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         int escolha = Integer.MAX_VALUE;
+        Estacionamento Estacionamento = new Estacionamento();
         Scanner input = new Scanner(System.in);
         do {
             System.out.println("1 - Registrar entrada de veiculo");
@@ -16,6 +17,7 @@ public class Main {
             switch(escolha){
                 case 1:
                     System.out.println("1 - Registrar entrada de veiculo");
+                    Estacionamento.RegistrarEntradaVeiculo();
                     System.out.println("-----------------------------------------------");
                     break;
                 case 2:
