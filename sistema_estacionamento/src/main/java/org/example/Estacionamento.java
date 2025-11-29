@@ -15,7 +15,7 @@ public class Estacionamento {
         vagasSobrando = totalVagas;
     }
     private double calculoHoras(LocalTime horaInicial , LocalTime horaFinal){
-        long minutosTotais = ChronoUnit.MINUTES.between(horaInicial,horaFinal);
+        long minutosTotais = ChronoUnit.MINUTES.between(horaInicial,horaFinal);// Calcula a duração em minutos 
         double valorPriHora = 12.0;
         double valorPorHoraAdicional = 8.0;
         double horasCobradas = Math.floor(minutosTotais/60.0); // Divide os minutos por 60(para calcular hora) e arredonda para cima se der virgula
@@ -79,7 +79,8 @@ public class Estacionamento {
                     horaSaidaString = input.next();
                     LocalTime horaDSaida = LocalTime.parse(horaSaidaString); //Coverte para Date Time
                     Veiculos.get(i).sethoraDeSaida(horaDSaida);
-                    double horasCobradas = Math.floor(ChronoUnit.MINUTES.between(Veiculos.get(i).getHoraDeEntrada(),Veiculos.get(i).gethoraDeSaida())/60.0); // Calcula as horas
+                    double horasCobradas = Math.floor(ChronoUnit.MINUTES.between(Veiculos.get(i).getHoraDeEntrada(),Veiculos.get(i).gethoraDeSaida())/60.0); // Calcula as horas arredondando os pra cima
+                    System.out.println("O veiculo ficou "+horasCobradas+" minutos no estacionamento");
                     Veiculos.get(i).setvalorPago(calculoHoras(Veiculos.get(i).getHoraDeEntrada(),Veiculos.get(i).gethoraDeSaida()));
                 }
             }else{
@@ -126,6 +127,12 @@ public class Estacionamento {
         }
     }
     public void RelatorioFaturamento(){
-
+        Veiculo veiculo = new Veiculo();
+        double faturamento = 0;
+        for(int i = 0; i < Veiculos.size(); i++){
+            faturamento += Veiculos.get(i).getvalorPago();
+        }
+        System.out.println("Quantidades de carros: "+Veiculos.size());
+        System.out.println("Faturamento: R$" + faturamento);
     }
 }
