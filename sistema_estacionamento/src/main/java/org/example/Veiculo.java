@@ -1,19 +1,11 @@
 package main.java.org.example;
+import java.time.LocalTime;
 public class Veiculo {
     private String placa;
     protected String modelo;
-    private int horaDeEntrada;
-    private int horaDeSaida;
-    private int minutoDeEntrada;
-    private int minutoDeSaida;
-    public Veiculo() {
-        this.placa = null;
-        this.modelo = null;
-        this.horaDeEntrada = 0;
-        this.horaDeSaida = 0;
-        this.minutoDeEntrada = 0;
-        this.minutoDeSaida = 0;
-    }
+    private LocalTime horaDeEntrada;
+    private LocalTime horaDeSaida;
+    private double valorPago;
     public String getPlaca() {
         return placa;
     }
@@ -26,28 +18,22 @@ public class Veiculo {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-    public int getHoraDeEntrada() {
+    public LocalTime getHoraDeEntrada() {
         return horaDeEntrada;
     }
-    public void setHoraDeEntrada(int horaDeEntrada) {
+    public void setHoraDeEntrada(LocalTime horaDeEntrada) {
         this.horaDeEntrada = horaDeEntrada;
     }
-    public int getHoraDeSaida() {
+    public LocalTime gethoraDeSaida() {
         return horaDeSaida;
     }
-    public void setHoraDeSaida(int horaDeSaida) {
-        this.horaDeSaida = horaDeSaida;
+    public void sethoraDeSaida(LocalTime horaSaida) {
+        this.horaDeSaida = horaSaida;
     }
-    public int getMinutoDeEntrada() {
-        return minutoDeEntrada;
+    public double getvalorPago() {
+        return valorPago;
     }
-    public void setMinutoDeEntrada(int minutoDeEntrada) {
-        this.minutoDeEntrada = minutoDeEntrada;
-    }
-    public int getMinutoDeSaida() {
-        return minutoDeSaida;
-    }
-    public void setMinutoDeSaida(int minutoDeSaida) {
-        this.minutoDeSaida = minutoDeSaida;
+    public void setvalorPago(double valorPago) {
+        this.valorPago = valorPago;
     }
 }
