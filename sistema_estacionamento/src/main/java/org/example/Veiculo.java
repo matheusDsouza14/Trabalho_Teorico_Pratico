@@ -44,7 +44,6 @@ public class Veiculo {
     public void setMinutoDeEntrada(int minutoDeEntrada) {
         this.minutoDeEntrada = minutoDeEntrada;
     }
-
     public int getMinutoDeSaida() {
         return minutoDeSaida;
     }

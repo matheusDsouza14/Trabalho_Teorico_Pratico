@@ -5,6 +5,7 @@ public class Main {
         int escolha = Integer.MAX_VALUE;
         Estacionamento Estacionamento = new Estacionamento();
         Scanner input = new Scanner(System.in);
+        Estacionamento.BemVindo();
         do {
             System.out.println("1 - Registrar entrada de veiculo");
             System.out.println("2 - Registrar saída de veículo");
@@ -30,6 +31,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("4 - Mostrar todos os veículos presentes");
+                    Estacionamento.lerVeiculos();
                     System.out.println("-----------------------------------------------");
                     break;
                 case 5:
