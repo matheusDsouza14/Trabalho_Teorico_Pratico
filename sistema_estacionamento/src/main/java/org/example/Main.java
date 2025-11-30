@@ -27,7 +27,6 @@ public class Main {
                     System.out.println("-----------------------------------------------");
                     break;
                 case 3:
-                    System.out.println("Mostrar quantidade de vagas disponíveis");
                     Estacionamento.quantVagasDisponiveis();
                     System.out.println("-----------------------------------------------");
                     break;
