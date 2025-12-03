@@ -3,10 +3,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
 public class Estacionamento {
     Scanner input = new Scanner(System.in);
     ArrayList<Veiculo> Veiculos = new ArrayList<>();
     int vagasSobrando;
+    DateTimeFormatter formatar = DateTimeFormatter.ofPattern("HH:mm");
     public void BemVindo() {
         int totalVagas;
         System.out.println("Bem vindo ao EstacionamentoRegister2000");
@@ -76,7 +78,7 @@ public class Estacionamento {
                         LocalTime horaDSaida = LocalTime.parse(horaSaidaString); //Coverte para Date Time
                         Veiculos.get(i).sethoraDeSaida(horaDSaida);
                         double minutosCobrados = ChronoUnit.MINUTES.between(Veiculos.get(i).getHoraDeEntrada(), Veiculos.get(i).gethoraDeSaida());
-                        double horasCobradas = Math.floor(minutosCobrados / 60.0); // Calcula as horas arredondando os pra cima
+                        double horasCobradas = Math.floor(minutosCobrados / 60.0); // Divide os minutos por 60(para calcular hora) e arredonda para cima se der virgula
                         System.out.println("O veiculo ficou " + (int) minutosCobrados + " minutos no estacionamento e pagará por " + (int) horasCobradas + " horas");
                         Veiculos.get(i).setvalorPago(calculoHoras(Veiculos.get(i).getHoraDeEntrada(), Veiculos.get(i).gethoraDeSaida()));
                     }
@@ -96,9 +98,9 @@ public class Estacionamento {
                 System.out.println("- Veiculo " + (i + 1));
                 System.out.println("Placa: " + Veiculos.get(i).getPlaca());
                 System.out.println("Modelo: " + Veiculos.get(i).getModelo());
-                System.out.println("Hora entrada: " + Veiculos.get(i).getHoraDeEntrada());
+                System.out.println("Hora entrada: " + Veiculos.get(i).getHoraDeEntrada().format(formatar)); //Pega a hora de saida do item relativo numero do indice indice pega as horas e formata automaticamente para o padrão Hora:Minuto
                 if (Veiculos.get(i).gethoraDeSaida() != null) {
-                    System.out.println("Hora saida: " + Veiculos.get(i).gethoraDeSaida());
+                    System.out.println("Hora saida: " + Veiculos.get(i).gethoraDeSaida().format(formatar));//Pega a hora de saida do item relativo numero do indice indice pega as horas e formata automaticamente para o padrão Hora:Minuto
                 } else {
                     System.out.println("Hora de saida: O veiculo ainda está no estacionamento");
                 }
@@ -125,9 +127,9 @@ public class Estacionamento {
                     System.out.println("- Veiculo " + (i + 1));
                     System.out.println("Placa: " + Veiculos.get(i).getPlaca());
                     System.out.println("Modelo: " + Veiculos.get(i).getModelo());
-                    System.out.println("Hora entrada: " + Veiculos.get(i).getHoraDeEntrada());
+                    System.out.println("Hora entrada: " + Veiculos.get(i).getHoraDeEntrada().format(formatar));//Pega a hora de saida do item relativo numero do indice indice pega as horas e formata automaticamente para o padrão Hora:Minuto
                     if (Veiculos.get(i).gethoraDeSaida() != null) {
-                        System.out.println("Hora saida: " + Veiculos.get(i).gethoraDeSaida());
+                        System.out.println("Hora saida: " + Veiculos.get(i).gethoraDeSaida().format(formatar));//Pega a hora de saida do item relativo numero do indice indice pega as horas e formata automaticamente para o padrão Hora:Minuto
                     } else {
                         System.out.println("Hora de saida: O veiculo ainda está no estacionamento");
                     }
