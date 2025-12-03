@@ -28,7 +28,7 @@ public class Estacionamento {
         if (horasCobradas == 1) {
             valorTotal = valorPriHora;
         } else {
-            valorTotal = valorPorHoraAdicional + ((horasCobradas - 1) * valorPorHoraAdicional); //Calcula o valor da primeira hora mais o resto das horas faltantes multiplicado por 8
+            valorTotal = valorPriHora + ((horasCobradas - 1) * valorPorHoraAdicional); //Calcula o valor da primeira hora mais o resto das horas faltantes multiplicado por 8
         }
         return valorTotal;
     }
