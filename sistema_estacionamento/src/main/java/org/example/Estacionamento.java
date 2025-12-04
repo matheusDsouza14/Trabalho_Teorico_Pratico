@@ -17,14 +17,18 @@ public class Estacionamento {
         vagasSobrando = totalVagas;
     }
     private double calculoHoras(LocalTime horaInicial, LocalTime horaFinal) {
+        //Calculo Hora
         long minutosTotais = ChronoUnit.MINUTES.between(horaInicial, horaFinal);// Calcula a duração em minutos
+        if(minutosTotais < 0) {//Se o o periodo ultrapassar meia noite, o resultado será menor que zero, com isso adicionamos a duração em minutos que 1 dia tem (1440 minutos) , para positiva-lo
+            minutosTotais += 1440;
+        }else if (minutosTotais == 0) {//Se for igual a 0 (mesma hora) retorna nada
+            return 0.0;
+        }
+        //Precificação
         double valorPriHora = 12.0;
         double valorPorHoraAdicional = 8.0;
         double horasCobradas = Math.ceil(minutosTotais / 60.0); // Divide os minutos por 60(para calcular hora) e arredonda para cima se der virgula
         double valorTotal;
-        if (minutosTotais <= 0) {//Se for menor ou igual a 0 retorna nada
-            return 0.0;
-        }
         if (horasCobradas == 1) {
             valorTotal = valorPriHora;
         } else {
@@ -79,6 +83,9 @@ public class Estacionamento {
                         LocalTime horaDSaida = LocalTime.parse(horaSaidaString); //Coverte para Date Time
                         Veiculos.get(i).sethoraDeSaida(horaDSaida);
                         double minutosCobrados = ChronoUnit.MINUTES.between(Veiculos.get(i).getHoraDeEntrada(), Veiculos.get(i).gethoraDeSaida());
+                        if(minutosCobrados < 0) {//Se o o periodo ultrapassar meia noite, o resultado será menor que zero, com isso adicionamos a duração em minutos que 1 dia tem (1440 minutos) , para positiva-lo
+                            minutosCobrados += 1440;
+                        }
                         double horasCobradas = Math.ceil(minutosCobrados / 60.0); // Divide os minutos por 60(para calcular hora) e arredonda para cima se der virgula
                         System.out.println("O veiculo ficou " + (int) minutosCobrados + " minutos no estacionamento e pagará por " + (int) horasCobradas + " horas");
                         Veiculos.get(i).setvalorPago(calculoHoras(Veiculos.get(i).getHoraDeEntrada(), Veiculos.get(i).gethoraDeSaida()));
@@ -99,7 +106,7 @@ public class Estacionamento {
                 System.out.println("- Veiculo " + (i + 1));
                 System.out.println("Placa: " + Veiculos.get(i).getPlaca());
                 System.out.println("Modelo: " + Veiculos.get(i).getModelo());
-                System.out.println("Hora entrada: " + Veiculos.get(i).getHoraDeEntrada().format(formatar)); //Pega a hora de saida do item relativo numero do indice indice pega as horas e formata automaticamente para o padrão Hora:Minuto
+                System.out.println("Hora entrada: " + Veiculos.get(i).getHoraDeEntrada().format(formatar)); //Pega a hora de entrada do item relativo numero do indice indice pega as horas e formata automaticamente para o padrão Hora:Minuto
                 if (Veiculos.get(i).gethoraDeSaida() != null) {
                     System.out.println("Hora saida: " + Veiculos.get(i).gethoraDeSaida().format(formatar));//Pega a hora de saida do item relativo numero do indice indice pega as horas e formata automaticamente para o padrão Hora:Minuto
                 } else {
